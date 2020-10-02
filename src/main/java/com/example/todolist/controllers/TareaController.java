@@ -6,6 +6,9 @@ import com.example.todolist.entities.CategoriaTareas;
 import com.example.todolist.entities.Tarea;
 import com.example.todolist.repository.CategoriaTareasRepository;
 import com.example.todolist.repository.TareaRepository;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -85,11 +88,6 @@ public class TareaController {
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-
     }
-
-
-
-
 
 }

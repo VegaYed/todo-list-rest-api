@@ -1,6 +1,8 @@
 package com.example.todolist.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -16,6 +18,7 @@ public class Categoria implements java.io.Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Size(min = 5, max = 50)
     @Column(name = "categoria", nullable = false, length = 50)
     private String categoria;
 
