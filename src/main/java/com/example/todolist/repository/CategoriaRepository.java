@@ -1,13 +1,9 @@
 package com.example.todolist.repository;
 
 import com.example.todolist.entitys.Categoria;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CategoriaRepository extends CrudRepository<Categoria, Integer> {
-
-
-    Categoria getById(Integer id);
-
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 
 
 

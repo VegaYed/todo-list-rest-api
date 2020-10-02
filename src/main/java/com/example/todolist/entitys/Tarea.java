@@ -1,13 +1,9 @@
 package com.example.todolist.entitys;
 
-import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
 
 @Entity
 @Table(name = "tarea")
@@ -25,12 +21,6 @@ public class Tarea implements java.io.Serializable {
 
     @Column(name = "fecha_realizacion")
     private LocalDate fechaRealizacion;
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tareas")
-    private Set<Categoria> categorias = new HashSet<>();
-
-
-
 
 
 }

@@ -10,14 +10,14 @@ import java.util.List;
 
 public class TareasDeCategoria {
 
-    public static Categoria filtrarTareas(Categoria categoria){
-        for(Tarea t: categoria.getTareas()){
-            for(Categoria categoriaa : t.getCategorias()){
-                categoriaa.setCategoria(null);
-            }
-        }
-        return categoria;
-    }
+//    public static Categoria filtrarTareas(Categoria categoria){
+//        for(Tarea t: categoria.getTareas()){
+//            for(Categoria categoriaa : t.getCategorias()){
+//                categoriaa.setCategoria(null);
+//            }
+//        }
+//        return categoria;
+//    }
 
 
 }

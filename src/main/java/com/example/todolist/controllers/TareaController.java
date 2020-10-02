@@ -8,6 +8,7 @@ import com.example.todolist.repository.TareaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -23,42 +24,25 @@ public class TareaController {
 
     @GetMapping("/tareas")
     public List<Tarea> getAllTarea(){
-        return (List<Tarea>) tareaRepository.findAll();
+        return tareaRepository.findAll();
     }
 
     @PostMapping("/tarea")
-    public void addTarea(@RequestBody TareaCategorias tareaCategorias){
-        for(Categoria c: tareaCategorias.getCategorias()){
-            c.addTarea(tareaCategorias.getTarea());
-            categoriaRepository.save(c);
-        }
+    public Tarea addTarea(@RequestBody TareaCategorias tareaCategorias){
+        return tareaRepository.save(tareaCategorias.getTarea());
     }
 
     @DeleteMapping("/tarea/{id}")
-    public void deleteTarea(@PathVariable Integer id ){
-         tareaRepository.deleteById(id);
+    public void deleteTarea(@PathVariable Integer id){
+        tareaRepository.deleteById(id);
     }
 
-    @GetMapping("/agregarTareaACategoria")
-    public Categoria sad(){
-        Categoria c = categoriaRepository.getById(1);
-        Tarea tarea = new Tarea();
-        tarea.setTarea("tarea java");
-        c.addTarea(tarea);
-        categoriaRepository.save(c);
-
-        for(Tarea t: c.getTareas()){
-            for(Categoria categoriaa : t.getCategorias()){
-                categoriaa.setCategoria(null);
-            }
-        }
-
-        return c;
+    @PutMapping("/tarea")
+    public Tarea updateTarea(@RequestBody Tarea tarea){
+        return tareaRepository.save(tarea);
     }
 
-//    @GetMapping("/tareasCategoria")
-//    public List<TareaJoin> getTareasDeCategoria(@RequestBody Categoria categoria){
-//        return tareaRepository.getJoinInformation(categoria);
-//    }
+
+
 
 }

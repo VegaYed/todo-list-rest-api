@@ -17,4 +17,5 @@ public class TareaJoin {
     private String tarea;
     private LocalDate fecha_realizacion;
 
+
 }
