@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TareaRepository extends JpaRepository<Tarea, Integer> {
 
-    @Query(value = "SELECT id, tarea, fecha_realizacion FROM tarea INNER JOIN categoria_tarea ON tarea.id = categoria_tarea.id_tarea WHERE categoria_tarea.id_categoria = ?1", nativeQuery = true )
+    @Query(value = "SELECT tarea.id, tarea.tarea, tarea.fecha_realizacion FROM tarea INNER JOIN categoria_tarea ON tarea.id = categoria_tarea.id_tarea WHERE categoria_tarea.id_categoria = ?1", nativeQuery = true )
     List<Tarea> nativeQuery(Integer id);
 
 

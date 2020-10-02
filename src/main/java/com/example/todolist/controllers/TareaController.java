@@ -1,14 +1,13 @@
 package com.example.todolist.controllers;
 
 import com.example.todolist.dto.TareaCategorias;
-import com.example.todolist.dto.TareaJoin;
 import com.example.todolist.entitys.*;
 import com.example.todolist.repository.CategoriaRepository;
+import com.example.todolist.repository.CategoriaTareasRepository;
 import com.example.todolist.repository.TareaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -20,7 +19,7 @@ public class TareaController {
     private TareaRepository tareaRepository;
 
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    private CategoriaTareasRepository categoriaTareasRepository;
 
     @GetMapping("/tareas")
     public List<Tarea> getAllTarea(){
@@ -29,7 +28,15 @@ public class TareaController {
 
     @PostMapping("/tarea")
     public Tarea addTarea(@RequestBody TareaCategorias tareaCategorias){
-        return tareaRepository.save(tareaCategorias.getTarea());
+        Tarea tarea = tareaRepository.save(tareaCategorias.getTarea());
+        for(Categoria categoria: tareaCategorias.getCategorias()){
+            CategoriaTareas ct = new CategoriaTareas();
+            ct.setId_tarea(tarea.getIdtarea());
+            ct.setId_categoria(categoria.getId());
+            categoriaTareasRepository.save(ct);
+            System.out.println(ct);
+        }
+        return tarea;
     }
 
     @DeleteMapping("/tarea/{id}")
@@ -41,6 +48,7 @@ public class TareaController {
     public Tarea updateTarea(@RequestBody Tarea tarea){
         return tareaRepository.save(tarea);
     }
+
 
 
 
