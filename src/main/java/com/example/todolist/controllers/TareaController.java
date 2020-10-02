@@ -1,46 +1,64 @@
 package com.example.todolist.controllers;
 
-import com.example.todolist.entitys.Categoria;
-import com.example.todolist.entitys.Tarea;
-import com.example.todolist.entitys.TareaCategoria;
-import com.example.todolist.entitys.TareaCompleta;
-import com.example.todolist.repository.TareaCategoriaRepository;
+import com.example.todolist.dto.TareaCategorias;
+import com.example.todolist.dto.TareaJoin;
+import com.example.todolist.entitys.*;
+import com.example.todolist.repository.CategoriaRepository;
 import com.example.todolist.repository.TareaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/")
 public class TareaController {
 
     @Autowired
-    TareaRepository tareaRepository;
+    private TareaRepository tareaRepository;
 
     @Autowired
-    TareaCategoriaRepository tareaCategoriaRepository;
+    private CategoriaRepository categoriaRepository;
 
-//    @PostMapping("/tarea")
-//    public void crearTarea(@RequestBody Tarea tarea, @RequestBody int[] categorias){
-//        crearTareaCategoria(categorias, tareaRepository.save(tarea).getId());
-//    }
+    @GetMapping("/tareas")
+    public List<Tarea> getAllTarea(){
+        return (List<Tarea>) tareaRepository.findAll();
+    }
 
     @PostMapping("/tarea")
-    public void crearTarea(@RequestBody TareaCompleta tareaCompleta){
-        tareaRepository.save(tareaCompleta.getTarea());
-        if(tareaCompleta.getCategorias() !=null){
-            crearTareaCategoria(tareaCompleta.getCategorias(), tareaCompleta.getTarea().getId());
+    public void addTarea(@RequestBody TareaCategorias tareaCategorias){
+        for(Categoria c: tareaCategorias.getCategorias()){
+            c.addTarea(tareaCategorias.getTarea());
+            categoriaRepository.save(c);
         }
     }
 
-    private void crearTareaCategoria(int[] categorias, int idTarea){
-        for (int categoria : categorias) {
-            TareaCategoria c = new TareaCategoria();
-            c.setCategoria(categoria);
-            c.setTarea(idTarea);
-            tareaCategoriaRepository.save(c);
-        }
+    @DeleteMapping("/tarea/{id}")
+    public void deleteTarea(@PathVariable Integer id ){
+         tareaRepository.deleteById(id);
     }
 
+    @GetMapping("/agregarTareaACategoria")
+    public Categoria sad(){
+        Categoria c = categoriaRepository.getById(1);
+        Tarea tarea = new Tarea();
+        tarea.setTarea("tarea java");
+        c.addTarea(tarea);
+        categoriaRepository.save(c);
 
+        for(Tarea t: c.getTareas()){
+            for(Categoria categoriaa : t.getCategorias()){
+                categoriaa.setCategoria(null);
+            }
+        }
+
+        return c;
+    }
+
+//    @GetMapping("/tareasCategoria")
+//    public List<TareaJoin> getTareasDeCategoria(@RequestBody Categoria categoria){
+//        return tareaRepository.getJoinInformation(categoria);
+//    }
 
 }

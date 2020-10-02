@@ -3,9 +3,9 @@ package com.example.todolist.entitys;
 import lombok.Data;
 
 @Data
-public class TareaCompleta {
+public class WrapperTareaCategorias {
 
     private Tarea tarea;
-    private int[] categorias;
+    private Categoria[] categorias;
 
 }
