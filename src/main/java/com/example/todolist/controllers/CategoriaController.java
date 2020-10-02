@@ -1,28 +1,31 @@
 package com.example.todolist.controllers;
 
-import com.example.todolist.dto.CategoriaTareas2;
-import com.example.todolist.dto.TareaCategorias;
-import com.example.todolist.entitys.Categoria;
-import com.example.todolist.entitys.CategoriaTareas;
-import com.example.todolist.entitys.Tarea;
+import com.example.todolist.entities.Categoria;
+import com.example.todolist.entities.Tarea;
 import com.example.todolist.repository.CategoriaRepository;
 import com.example.todolist.repository.TareaRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/")
 @CrossOrigin
 public class CategoriaController {
 
+    /**
+     * 
+     * Give the Entity Repository to manage CRUD operations
+     */
     @Autowired
-    CategoriaRepository categoriaRepository;
+    private CategoriaRepository categoriaRepository;
 
+    /**
+     * 
+     * Give the Entity Repository to manage CRUD operations
+     */
     @Autowired
     private TareaRepository tareaRepository;
 
@@ -32,7 +35,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/categorias")
-    public List<Categoria> buscaTodas(){
+    public List<Categoria> buscarTodas(){
         return categoriaRepository.findAll();
     }
 
@@ -43,23 +46,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/categoria/{id}")
-    public List<Tarea> getOne(@PathVariable Integer id){
+    public List<Tarea> buscarCategoria(@PathVariable Integer id){
         return tareaRepository.nativeQuery(id);
     }
-
-
-//    @GetMapping("/ppql")
-//    public List<TareaCategorias> picoPalQueLee(){
-//        List<TareaCategorias> tareaCategoriasList = new ArrayList<>();
-//        for(Categoria categoria: categoriaRepository.findAll()){
-//            CategoriaTareas2 ct2 = new CategoriaTareas2();
-//            ct2.setCategoria(categoria);
-//            categoriaTareasList.add(ct2);
-//            for (Tarea t: tareaRepository.nativeQuery(categoria.getId())){
-//                System.out.println(t);
-//            }
-//        }
-//        return categoriaTareasList;
-//    }
-
 }

@@ -1,7 +1,7 @@
 package com.example.todolist.controllers;
 
 import com.example.todolist.dto.Token;
-import com.example.todolist.entitys.Usuario;
+import com.example.todolist.entities.Usuario;
 import com.example.todolist.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,9 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class UsuarioController {
 
+    /**
+     * 
+     * Give the Entity Repository to manage CRUD operations
+     */
     @Autowired
     private UsuarioRepository repository;
 
+    /**
+     * 
+     * Return a token to the front-end if the data is equals to the database.
+     * Else return null.
+     */
     @PostMapping("/login")
     public Token login(@RequestBody Usuario usuario) {
         String user = usuario.getNombre();
@@ -32,7 +41,4 @@ public class UsuarioController {
     public Usuario registrarUsuario(@RequestBody Usuario usuario){
         return repository.save(usuario);
     }
-
-
-
 }

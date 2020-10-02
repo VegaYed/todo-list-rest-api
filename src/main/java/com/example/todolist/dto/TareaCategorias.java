@@ -1,7 +1,7 @@
 package com.example.todolist.dto;
 
-import com.example.todolist.entitys.Categoria;
-import com.example.todolist.entitys.Tarea;
+import com.example.todolist.entities.Categoria;
+import com.example.todolist.entities.Tarea;
 import lombok.Data;
 
 import java.util.HashSet;

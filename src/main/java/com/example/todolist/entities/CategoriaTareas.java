@@ -1,4 +1,4 @@
-package com.example.todolist.entitys;
+package com.example.todolist.entities;
 
 import lombok.Data;
 

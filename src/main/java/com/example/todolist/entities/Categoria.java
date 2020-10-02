@@ -1,11 +1,8 @@
-package com.example.todolist.entitys;
+package com.example.todolist.entities;
 
-import com.fasterxml.jackson.annotation.*;
+import javax.persistence.*;
 import lombok.Data;
 import lombok.ToString;
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "categoria")

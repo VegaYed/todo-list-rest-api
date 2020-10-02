@@ -1,10 +1,8 @@
-package com.example.todolist.entitys;
+package com.example.todolist.entities;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
+import lombok.Data;
 
 @Entity
 @Data
