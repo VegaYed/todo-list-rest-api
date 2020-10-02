@@ -16,7 +16,7 @@ public class Categoria implements java.io.Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "categoria", nullable = false)
+    @Column(name = "categoria", nullable = false, length = 50)
     private String categoria;
 
 }

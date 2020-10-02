@@ -16,10 +16,10 @@ public class Usuario implements Serializable {
     @Column(name = "idusuario", nullable = false)
     private Integer idusuario;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, length = 20)
     private String nombre;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false, length = 20)
     private String password;
 
 }
