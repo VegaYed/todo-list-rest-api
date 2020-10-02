@@ -1,6 +1,7 @@
 package com.example.todolist.controllers;
 
 import com.example.todolist.dto.CategoriaTareas2;
+import com.example.todolist.dto.TareaCategorias;
 import com.example.todolist.entitys.Categoria;
 import com.example.todolist.entitys.CategoriaTareas;
 import com.example.todolist.entitys.Tarea;
@@ -47,18 +48,18 @@ public class CategoriaController {
     }
 
 
-    @GetMapping("/ppql")
-    public List<CategoriaTareas2> picoPalQueLee(){
-        List<CategoriaTareas2> categoriaTareasList = new ArrayList<>();
-        for(Categoria categoria: categoriaRepository.findAll()){
-            CategoriaTareas2 ct2 = new CategoriaTareas2();
-            ct2.setCategoria(categoria);
-            categoriaTareasList.add(ct2);
-            for (Tarea t: tareaRepository.nativeQuery(categoria.getId())){
-                System.out.println(t);
-            }
-        }
-        return categoriaTareasList;
-    }
+//    @GetMapping("/ppql")
+//    public List<TareaCategorias> picoPalQueLee(){
+//        List<TareaCategorias> tareaCategoriasList = new ArrayList<>();
+//        for(Categoria categoria: categoriaRepository.findAll()){
+//            CategoriaTareas2 ct2 = new CategoriaTareas2();
+//            ct2.setCategoria(categoria);
+//            categoriaTareasList.add(ct2);
+//            for (Tarea t: tareaRepository.nativeQuery(categoria.getId())){
+//                System.out.println(t);
+//            }
+//        }
+//        return categoriaTareasList;
+//    }
 
 }
